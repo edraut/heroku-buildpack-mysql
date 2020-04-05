@@ -55,7 +55,7 @@ module BuildPack
       end
 
       def fix_perms_and_mv_binaries
-        non_symlinks = %x[ls -l tmp/mysql/usr/bin | grep -v ^l]
+        non_symlinks = %x[ls -l #{@mysql_binaries} | grep -v ^l]
         lines = non_symlinks.split("\n")
         entries = lines[1..-1]
         binaries = entries.map{|entry| entry.split(' ').last}
