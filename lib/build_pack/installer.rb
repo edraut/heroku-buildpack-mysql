@@ -55,6 +55,7 @@ module BuildPack
       end
 
       def fix_perms_and_mv_binaries
+        Logger.log %x[ls -R #{@mysql_path}]
         binaries = Dir.glob("#{@mysql_binaries}/*")
         FileUtils.chmod("u=wrx", binaries)
         FileUtils.mv(binaries, @bin_path)
