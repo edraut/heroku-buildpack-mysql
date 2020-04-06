@@ -59,6 +59,7 @@ module BuildPack
         lines = non_symlinks.split("\n")
         entries = lines[1..-1]
         binaries = entries.map{|entry| entry.split(' ').last}
+        binaries.map!{ |filename| "#{@mysql_binaries}/#{filename}" }
         FileUtils.chmod("u=wrx", binaries)
         FileUtils.mv(binaries, @bin_path)
       end
